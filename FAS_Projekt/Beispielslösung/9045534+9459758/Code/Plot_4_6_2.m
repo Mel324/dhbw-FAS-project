@@ -10,8 +10,8 @@ ChStern = 1./(g*SG); %20.5518;
 % ChStern = 1 ./ (g * SG);
 CvStern = convGradToCStern(EG, 0, g, ChStern);
 
-simStep = 0.001 - (rSoll/40*0.0009);
-simTime = 10 - (rSoll/40*9);
+simStep = 0.001 - (rSoll/50*0.0009);
+simTime = 10 - (rSoll/50*9);
 
 colors = [[0 0 0.5], [0.8 0.4 0], [0.5 0 0]];
 hold(plotInstance,'off'); 
