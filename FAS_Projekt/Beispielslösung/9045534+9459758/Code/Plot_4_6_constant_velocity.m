@@ -1,11 +1,10 @@
-function Plot_4_6_1(plotInstance, vStart, gravity, lv, lh, lEG, lSG, is, m, theta)
+function Plot_4_6_constant_velocity(plotInstance, vStart, gravity, lv, lh, lEG, lSG, is, m, theta)
 
 deltaControlled = 0;
 deltaH = 0:0.02:6;
 
-
 v = vStart;
-%v_array = v * ones(1,301);
+v_array = v * ones(1,301);
 
 g = gravity;
 
@@ -19,7 +18,7 @@ colors = [[0 0 0.5], [0.8 0.4 0], [0.5 0 0]];
 
 hold(plotInstance,'off');
 for k = 1:size(CvStern,2)
-    [ay_val, delta_val] = ESM_Run(10, 0.01, deltaH, 1, v, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
+    [ay_val, delta_val] = QD_run_model(10, 0.01, deltaH, 1, v_array, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
     
     plot(plotInstance, ay_val, delta_val, 'LineWidth', 2, 'Color', colors((k-1)*3+1:k*3));
     hold(plotInstance,'on');

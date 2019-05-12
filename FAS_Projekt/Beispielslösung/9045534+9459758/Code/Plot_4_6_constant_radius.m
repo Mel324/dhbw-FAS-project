@@ -1,4 +1,5 @@
-function Plot_4_6_2(plotInstance, rSoll, gravity, lv, lh, lEG, lSG, is, m, theta)
+function Plot_4_6_constant_radius(plotInstance, rSoll, gravity, lv, lh, lEG, lSG, is, m, theta)
+
 deltaControlled = 1;
 deltaH = 0;
 v = 2.5:1.0:20.0;
@@ -17,7 +18,7 @@ colors = [[0 0 0.5], [0.8 0.4 0], [0.5 0 0]];
 hold(plotInstance,'off'); 
 
 for k = 1:size(CvStern,2)
-    [ay_val, delta_val] = ESM_Run(simTime, simStep, deltaH, rSoll, v, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
+    [ay_val, delta_val] = QD_run_model(simTime, simStep, deltaH, rSoll, v, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
     plot(plotInstance, ay_val, delta_val, 'LineWidth', 2, 'Color', colors((k-1)*3+1:k*3));
     hold(plotInstance,'on');
 end

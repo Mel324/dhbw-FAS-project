@@ -19,7 +19,7 @@ colors = [[0 0 0.5], [0.8 0.4 0], [0.5 0 0]];
 %cut_axis = (0 == 1);
 hold(plotInstance,'off');
 for k = 1:size(CvStern,2)
-    [~, ~, dpsi_val] = QD_run_model(10, 0.001, delta_h_array, 1, v, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
+    [~, ~, dpsi_val] = QD_run_model2(10, 0.001, delta_h_array, 1, v, CvStern(k), ChStern, deltaControlled, lv, lh, is, m, theta, g);
     yVals = dpsi_val/(delta_h/is);
     max_limit_y = max(max(yVals), max_limit_y);
     if k > 1

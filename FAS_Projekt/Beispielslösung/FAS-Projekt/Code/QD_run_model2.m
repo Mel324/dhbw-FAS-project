@@ -1,4 +1,5 @@
-function [ay_val, delta_val, dpsi_val] = QD_run_model(simTime, simStep, delta_h, rSoll, v, CvStern, ChStern, deltaControlled, lv, lh, is, m, theta, g)
+function [ay_val, delta_val, dpsi_val] = QD_run_model2(simTime, simStep, delta_h, rSoll, v, CvStern, ChStern, deltaControlled, lv, lh, is, m, theta, g)
+%[ay_val, delta_val] = ESM_Run(deltaH, v, CvStern, ChStern)
 
 %% Init Values
 mDivTheta = m / theta;
@@ -15,9 +16,9 @@ mDivTheta = m / theta;
 
 
 %% Setup Simulation
-load_system('ESM');
+load_system('QD_V2');
 %Signal specifications
-params = get_param('ESM','modelworkspace');
+params = get_param('QD_V2','modelworkspace');
 params.assignin('deltaControlled', deltaControlled);
 params.assignin('deltaH', delta_h);
 params.assignin('rSoll', rSoll);
@@ -32,7 +33,7 @@ params.assignin('g',g);
 
 
 %% Simulate
-simOut = sim('ESM','Solver','ode4','FixedStep',num2str(simStep),'StopTime',num2str(simTime));
+simOut = sim('QD_V2','Solver','ode4','FixedStep',num2str(simStep),'StopTime',num2str(simTime));
 %simOut.who
 ay = simOut.get('ay');
 delta = simOut.get('delta');
@@ -51,7 +52,7 @@ end
 ay_val = ay.data(end,:);
 delta_val = delta.data(end,:);
 dpsi_val = dpsi.data(end,:);
-close_system('ESM',0);
+close_system('QD_V2',0);
 %% Plot Results
 %subplot(2,1,1);
 %plot(vy);
